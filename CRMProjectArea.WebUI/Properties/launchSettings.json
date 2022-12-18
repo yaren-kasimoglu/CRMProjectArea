@@ -9,6 +9,7 @@
   },
   "profiles": {
     "CRMProjectArea.WebUI": {
+      "hotReloadEnabled": true,
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

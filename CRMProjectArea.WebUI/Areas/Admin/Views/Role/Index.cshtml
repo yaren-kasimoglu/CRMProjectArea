@@ -1,16 +1,20 @@
-﻿@model List<UserRoleDTO>
+﻿@model RolePageDTO
 
 <h4 class="heading_a uk-margin-bottom">Güvenlik Rolleri</h4>
-<div>
-	<div class="uk-input-group">
-		<div class="md-input-wrapper">
-			<label>Rol</label>
-			<input type="text" class="md-input">
-			<span class="md-input-bar "></span>
+<form id="roleForm" asp-controller="Role" asp-action="Index" asp-area="admin" method="post">
+	<div>
+		<div class="uk-input-group">
+			<div class="md-input-wrapper">
+				<label>Rol</label>
+				<input asp-for="Id" type="hidden" />
+				<input asp-for="Method" type="hidden" />
+				<input asp-for="Name" type="text" class="md-input label-fixed">
+				<span class="md-input-bar "></span>
+			</div>
+			<span onclick="SubmitForm(event)" class="uk-input-group-addon"><a class="md-btn" href="#">Kaydet</a></span>
 		</div>
-		<span class="uk-input-group-addon"><a class="md-btn" href="#">Ekle</a></span>
 	</div>
-</div>
+</form>
 <table class="uk-table uk-table-hover">
 	<thead>
 		<tr>
@@ -21,15 +25,15 @@
 	</thead>
 	<tbody>
 		@{
-			if (Model != null)
+			if (Model != null && Model.Roles != null)
 			{
-				foreach (var item in Model)
+				foreach (var item in Model.Roles)
 				{
 					<tr>
 						<td>@item.Name</td>
 						<td>
-							<button>Düzenle</button>
-							<button>Sil</button>
+							<button onclick="EditRow(this)" type="button" data="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Düzenle</button>
+							<button onclick="RemoveRow(this)" type="button" data="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Sil</button>
 						</td>
 					</tr>
 				}
@@ -43,3 +47,43 @@
 		}
 	</tbody>
 </table>
+
+@section JsSection{
+	<script>
+		function SubmitForm() {
+			var form = document.getElementById("roleForm");
+			if (form != undefined && form != null) {
+				document.getElementById("Method").value = "InsertOrUpdate"; //kaydetme ve güncelleme işleminde silme işlemi yapıl
+				form.submit();
+				FormClear();
+			}
+		}
+
+		function EditRow(e) {
+			if (e != undefined) {
+				var data = JSON.parse(e.getAttribute("data"));
+				document.getElementById("Id").value = data.Id;
+				document.getElementById("Name").value = data.Name;
+			}
+		}
+		function RemoveRow(e) {
+			if (confirm("Satırı silmek istiyormusunuz")) {
+				if (e != undefined) {
+
+					var data = JSON.parse(e.getAttribute("data"));
+					document.getElementById("Method").value = "Delete";
+					document.getElementById("Id").value = data.Id;
+					var form = document.getElementById("roleForm");
+					form.submit();
+					FormClear();
+				}
+			}
+		}
+
+		function FormClear() {
+			document.getElementById("Method").value = "";
+			document.getElementById("Id").value = "";
+			document.getElementById("Name").value = "";
+		}
+	</script>
+}
