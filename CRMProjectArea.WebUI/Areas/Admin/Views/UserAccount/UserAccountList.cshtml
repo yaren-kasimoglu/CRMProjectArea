@@ -1,0 +1,51 @@
+﻿@model List<UserAccountDTO>
+
+<h4 class="heading_a uk-margin-bottom">Kullanıcı Listesi</h4>
+<table class="uk-table uk-table-hover">
+	<thead>
+		<tr>
+			<th>Kullanıcı Adı</th>
+			<th>Email</th>
+			<th>Roller</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@{
+			if (Model != null && Model != null)
+			{
+				foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.UserName</td>
+						<td>@item.Email</td>
+						<td>@string.Join(",",item.Roles)</td>
+
+						<td>
+							<div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+								<button class="md-btn">Click me <i class="material-icons">&#xE313;</i></button>
+								<div class="uk-dropdown">
+									<ul class="uk-nav uk-nav-dropdown">
+										<li><a asp-controller="UserRole" asp-action="UserRoleManage" asp-asp-area="Admin" asp-route-userid="@item.Id">Güvenlik Rol Düzenle</a></li>
+									</ul>
+								</div>
+							</div>
+						</td>
+					</tr>
+				}
+			}
+			else
+			{
+				<tr colspan="3">
+					<td>Gösterilecek Kayıt Bulunamadı</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
+
+@section JsSection{
+	<script>
+
+	</script>
+}

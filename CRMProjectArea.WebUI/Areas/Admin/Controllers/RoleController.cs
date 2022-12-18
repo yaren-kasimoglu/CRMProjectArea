@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CRMProjectArea.WebUI.Areas.Admin.Controllers
 {
+	[Area("Admin")]
 	[Authorize] //giriş yapılmadan bu sayfaya ulaşılamasın
 	public class RoleController : Controller
 	{
@@ -15,9 +16,6 @@ namespace CRMProjectArea.WebUI.Areas.Admin.Controllers
 		{
 			_roleManager = roleManager;
 		}
-
-
-
 
 		[HttpGet("{area}/role-list")]
 		public async Task<IActionResult> Index()

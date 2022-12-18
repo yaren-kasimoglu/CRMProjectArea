@@ -219,6 +219,8 @@
 								<ul class="uk-nav js-uk-prevent">
 									<li><a href="page_user_profile.html">My profile</a></li>
 									<li><a asp-controller="Account" asp-action="Logout" asp-area="Identity">Logout</a></li>
+
+
 								</ul>
 							</div>
 						</li>
@@ -301,7 +303,9 @@
 					<ul>
 						<li>
 							<a asp-controller="Role" asp-action="Index" asp-area="Admin">Roller </a>
+
 						</li>
+						<li><a asp-controller="UserAccount" asp-action="UserAccountList" asp-area="Admin">Kullanıcılar</a></li>
 					</ul>
 				</li>
 			</ul>
