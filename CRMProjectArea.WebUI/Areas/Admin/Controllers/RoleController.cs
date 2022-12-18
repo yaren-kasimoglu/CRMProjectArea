@@ -15,6 +15,7 @@ namespace CRMProjectArea.WebUI.Areas.Admin.Controllers
 			_roleManager = roleManager;
 		}
 
+
 		[HttpGet("{area}/role-list")]
 		public async Task<IActionResult> Index()
 		{
