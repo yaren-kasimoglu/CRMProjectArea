@@ -28,7 +28,7 @@ builder.Services.ConfigureApplicationCookie(config =>
 	//login path
 	config.LoginPath = new PathString("/identity/login");
 	config.AccessDeniedPath = new PathString("/identity/access-denied");
-	config.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+	config.ExpireTimeSpan = TimeSpan.FromHours(1);
 	config.Cookie.HttpOnly = true;
 	config.SlidingExpiration = true;
 });

@@ -99,5 +99,10 @@ namespace CRMProjectArea.WebUI.Areas.Identity.Controllers
 			return RedirectToAction("Login", "Account", new { area = "Identity" });
 		}
 
+		[HttpGet("{area}/access-denied")]
+		public IActionResult AccessDenied()
+		{
+			return View();
+		}
 	}
 }

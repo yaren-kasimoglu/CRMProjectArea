@@ -1,6 +1,16 @@
-﻿@model UserRoleDTO
+﻿@model List<UserRoleDTO>
 
 <h4 class="heading_a uk-margin-bottom">Güvenlik Rolleri</h4>
+<div>
+	<div class="uk-input-group">
+		<div class="md-input-wrapper">
+			<label>Rol</label>
+			<input type="text" class="md-input">
+			<span class="md-input-bar "></span>
+		</div>
+		<span class="uk-input-group-addon"><a class="md-btn" href="#">Ekle</a></span>
+	</div>
+</div>
 <table class="uk-table uk-table-hover">
 	<thead>
 		<tr>
@@ -10,10 +20,26 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Admin</td>
-			<td>Düzenle</td>
-			<td>Sil</td>
-		</tr>
+		@{
+			if (Model != null)
+			{
+				foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.Name</td>
+						<td>
+							<button>Düzenle</button>
+							<button>Sil</button>
+						</td>
+					</tr>
+				}
+			}
+			else
+			{
+				<tr colspan="3">
+					<td>Gösterilecek Kayıt Bulunamadı</td>
+				</tr>
+			}
+		}
 	</tbody>
 </table>
