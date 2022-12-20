@@ -1,41 +1,45 @@
 ﻿@model List<UserRoleDTO>
 
-<h4 class="heading_a uk-margin-bottom">Kullanıcı Listesi</h4>
-<table class="uk-table uk-table-hover">
-	<thead>
-		<tr>
-			<th>Rol Adı</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@{
-			if (Model != null && Model != null)
-			{
-				for (int i = 0; i < Model.Count; i++)
+<h4 class="heading_a uk-margin-bottom">Kullanıcı Güvenlik Rol Düzenleme</h4>
+<h5>@ViewBag.userName</h5>
+
+<form asp-controller="UserRole" asp-action="UserRoleManage" asp-area="Admin" method="post">
+	<button type="submit" id="btnSave" class="btn btn-success">Kaydet</button>
+	<table class="uk-table uk-table-hover">
+		<thead>
+			<tr>
+				<th>Rol Adı</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@{
+				if (Model != null && Model != null)
 				{
-					<tr>
-						<td>
-							<input type="hidden" asp-for="@Model[i].Id">
-							<input type="hidden" asp-for="@Model[i].Name">
-							@Model[i].Name
-						</td>
-						<td>
-							<input asp-for="@Model[i].IsSelected">
-						</td>
+					for (int i = 0; i < Model.Count; i++)
+					{
+						<tr>
+							<td>
+								<input type="hidden" asp-for="@Model[i].Id">
+								<input type="hidden" asp-for="@Model[i].Name">
+								@Model[i].Name
+							</td>
+							<td>
+								<input asp-for="@Model[i].IsSelected">
+							</td>
+						</tr>
+					}
+				}
+				else
+				{
+					<tr colspan="3">
+						<td>Gösterilecek Kayıt Bulunamadı</td>
 					</tr>
 				}
 			}
-			else
-			{
-				<tr colspan="3">
-					<td>Gösterilecek Kayıt Bulunamadı</td>
-				</tr>
-			}
-		}
-	</tbody>
-</table>
-
+		</tbody>
+	</table>
+</form>
 @section JsSection{
 	<script>
 
