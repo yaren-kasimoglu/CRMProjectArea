@@ -1,5 +1,8 @@
-using CRMProjectArea.BL.Abstract;
+ï»¿using CRMProjectArea.BL.Abstract;
+using CRMProjectArea.BL.Concrete;
+using CRMProjectArea.DAL.Abstract;
 using CRMProjectArea.DAL.Concrete.EF.Context;
+using CRMProjectArea.DAL.Concrete.EF.Repository;
 using CRMProjectArea.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +19,7 @@ builder.Services.AddDbContext<CRMContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
 });
-builder.Services.AddScoped<ICustomerManager, CustomerM>();
+
 builder.Services.AddDefaultIdentity<UserAccount>(options =>
 {
 
@@ -34,6 +37,12 @@ builder.Services.ConfigureApplicationCookie(config =>
 	config.SlidingExpiration = true;
 });
 
+//Manager
+builder.Services.AddScoped<ICustomerManager, CustomerManager>();
+
+
+//Repo
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 
@@ -46,8 +55,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); //Giriþ kontrolü yapýlan middleware
-app.UseAuthorization(); //yetki kontrolü yapýlan middleware
+app.UseAuthentication(); //GiriÅŸ kontrolÃ¼ yapÃ½lan middleware
+app.UseAuthorization(); //yetki kontrolÃ¼ yapÃ½lan middleware
 
 app.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");

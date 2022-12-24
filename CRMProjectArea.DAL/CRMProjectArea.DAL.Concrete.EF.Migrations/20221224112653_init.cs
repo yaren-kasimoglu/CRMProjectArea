@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CRMProjectArea.DAL.Concrete.EF.Migrations
+namespace CRMProjectArea.DAL.CRMProjectArea.DAL.Concrete.EF.Migrations
 {
     public partial class init : Migration
     {

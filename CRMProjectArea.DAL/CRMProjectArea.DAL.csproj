@@ -27,4 +27,8 @@
     <ProjectReference Include="..\CRMProjectArea.Entities\CRMProjectArea.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\EF\Migrations\" />
+  </ItemGroup>
+
 </Project>

@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRMProjectArea.BL.Concreate
+namespace CRMProjectArea.BL.Concrete
 {
     public class CustomerManager : ICustomerManager
     {
@@ -56,15 +56,8 @@ namespace CRMProjectArea.BL.Concreate
         {
             var user = await _userManager.GetUserAsync(_context.HttpContext.User);
             bool isCustomerDetail = await _userManager.IsInRoleAsync(user, "CustomerDetail");
-            if (isCustomerDetail)
-            {
 
-                return user is Customer;
-            }
-            else
-            {
-                throw new Exception("Yetkiniz bulunmuyor");
-            }
+            return new Customer();
         }
 
         public async Task<IEnumerable<Customer>> Select(Expression<Func<Customer, bool>> predicate = null)
