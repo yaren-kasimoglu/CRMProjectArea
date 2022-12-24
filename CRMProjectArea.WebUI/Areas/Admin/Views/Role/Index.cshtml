@@ -27,13 +27,16 @@
 		@{
 			if (Model != null && Model.Roles != null)
 			{
+				
 				foreach (var item in Model.Roles)
 				{
+					
 					<tr>
 						<td>@item.Name</td>
 						<td>
-							<button onclick="EditRow(this)" type="button" data="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Düzenle</button>
+							<button onload="Alert()" onclick="EditRow(this)" type="button" data="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Düzenle</button>
 							<button onclick="RemoveRow(this)" type="button" data="@Newtonsoft.Json.JsonConvert.SerializeObject(item)">Sil</button>
+							
 						</td>
 					</tr>
 				}
@@ -77,6 +80,12 @@
 					form.submit();
 					FormClear();
 				}
+			}
+		}
+		function Alert(){
+			if(document.getElementById("Name")=="Admin"){
+				alert("Admin bulundu");
+
 			}
 		}
 

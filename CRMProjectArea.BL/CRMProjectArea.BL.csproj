@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CRMProjectArea.DAL\CRMProjectArea.DAL.csproj" />
+    <ProjectReference Include="..\CRMProjectArea.Entities\CRMProjectArea.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

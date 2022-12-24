@@ -1,3 +1,4 @@
+using CRMProjectArea.BL.Abstract;
 using CRMProjectArea.DAL.Concrete.EF.Context;
 using CRMProjectArea.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +16,7 @@ builder.Services.AddDbContext<CRMContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
 });
-
+builder.Services.AddScoped<ICustomerManager, CustomerM>();
 builder.Services.AddDefaultIdentity<UserAccount>(options =>
 {
 

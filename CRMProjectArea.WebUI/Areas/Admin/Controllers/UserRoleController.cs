@@ -43,6 +43,11 @@ namespace CRMProjectArea.WebUI.Areas.Admin.Controllers
 			return View(userRoleList);
 		}
 
+		/// <summary>
+		/// Kullanıcının sahip olduğu rolleri kontrol eder
+		/// </summary>
+		/// <param name="userid"></param>
+		/// <returns></returns>
 		private async Task<List<UserRoleDTO>> GetUserRoles(int userid)
 		{
 			var user = _userManager.Users.FirstOrDefault(t0 => t0.Id == userid);
@@ -59,6 +64,7 @@ namespace CRMProjectArea.WebUI.Areas.Admin.Controllers
 				if (await _userManager.IsInRoleAsync(user, item.NormalizedName))
 				{
 					userRole.IsSelected = true;
+					
 				}
 				else
 				{
